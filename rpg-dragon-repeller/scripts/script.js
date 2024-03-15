@@ -20,6 +20,13 @@ const monsterStats = document.querySelector("#monsterStats");
 const monsterName = document.querySelector("#monsterName");
 const monsterHealthText = document.querySelector("#monsterHealth");
 
+const weapons = [
+   { name: 'stick', power: 5 },
+   { name: 'dagger', power: 30 },
+   { name: 'claw hammer', power: 50 },
+   { name: 'sword', power: 100 }
+ ];
+
 // created an array to include all locations as objects
 const locations = [
    {
@@ -41,48 +48,85 @@ button1.onclick = goStore;
 button2.onclick = goCave;
 button3.onclick = fightDragon;
 
+// create an location updating function which can be refactored in all the required places
 function update(location) {
-
-}
+   button1.innerText = location["button text"][0];
+   button2.innerText = location["button text"][1];
+   button3.innerText = location["button text"][2];
+   button1.onclick = location["button functions"][0];
+   button2.onclick = location["button functions"][1];
+   button3.onclick = location["button functions"][2];
+   text.innerText = location.text;
+ }
 
 // go to town after going to store
 function goTown() {
-  button1.innerText = "Go to store";
-  button2.innerText = "Go to cave";
-  button3.innerText = "Fight dragon";
-  button1.onclick = goStore;
-  button2.onclick = goCave;
-  button3.onclick = fightDragon;
-  text.innerText = "You are in the town square. You see a sign that says \"Store\".";
-}
+   update(locations[0]);
+ }
+ 
+ // go to the store
+ function goStore() {
+   update(locations[1]);
+ }
 
-// go to the store
-function goStore() {
-  button1.innerText = "Buy 10 health (10 gold)";
-  button2.innerText = "Buy weapon (30 gold)";
-  button3.innerText = "Go to town square";
-  button1.onclick = buyHealth;
-  button2.onclick = buyWeapon;
-  button3.onclick = goTown;
-  text.innerText = "You enter the store.";
-}
+// go to the cave 
+ function goCave() {
+   update(locations[2]);
+ }
+ 
+ // fight the dragon
+ function fightDragon() {
+   console.log("Fighting dragon.");
+ }
+ 
 
-// go to the cave
-function goCave() {
-  console.log("Going to cave.");
-}
+ // buying health in the store - condition - gold must be greater than 10
+ function buyHealth() {
+   if (gold >= 10) {
+     gold -= 10;
+     health += 10;
+     goldText.innerText = gold;
+     healthText.innerText = health;
+   } else {
+     text.innerText = "You do not have enough gold to buy health.";
+   }
+ }
+ 
 
-// fight the dragon
-function fightDragon() {
-  console.log("Fighting dragon.");
-}
-
-// buy health potion in store 
-function buyHealth() {
-
-}
-
-// buy a weapon in store
-function buyWeapon() {
-
-}
+ // buying new weapons - conditions - atleast 30 gold and best weapon not yet bought
+ function buyWeapon() {
+   if (currentWeapon < weapons.length - 1) {
+     if (gold >= 30) {
+       gold -= 30;
+       currentWeapon++;
+       goldText.innerText = gold;
+       let newWeapon = weapons[currentWeapon].name;
+       text.innerText = "You now have a " + newWeapon + ".";
+       inventory.push(newWeapon);
+       text.innerText += " In your inventory you have: " + inventory;
+     } else {
+       text.innerText = "You do not have enough gold to buy a weapon.";
+     }
+   } else {
+     text.innerText = "You already have the most powerful weapon!";
+     button2.innerText = "Sell weapon for 15 gold";
+     button2.onclick = sellWeapon;
+   }
+ }
+ 
+// selling other weapons - condition - must have more than one weapon already
+ function sellWeapon() {
+   if (inventory.length > 1) {
+      gold += 15;
+      goldText.innerText = gold;
+  
+    }
+ }
+ 
+ function fightSlime() {
+ 
+ }
+ 
+ function fightBeast() {
+ 
+ }
