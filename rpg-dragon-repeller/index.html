@@ -1,25 +1,48 @@
+
+<!--Standard HTML boilerplate with a DOCTYPE, html, head, and body, then add a meta tag for the charset. 
+Add a title element and use the text RPG - Dragon Repeller for it. Include a link tag for your stylesheet to link the styles.css file.
+Finally, create a div element with id set to game within your body.-->
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="./styles.css">
     <title>RPG - Dragon Repeller</title>
-    <script src="./script.js"></script>
   </head>
   <body>
     <div id="game">
+
       <div id="stats">
         <span class="stat">XP: <strong><span id="xpText">0</span></strong></span>
         <span class="stat">Health: <strong><span id="healthText">100</span></strong></span>
         <span class="stat">Gold: <strong><span id="goldText">50</span></strong></span>
       </div>
+      <!--  -->
       <div id="controls">
         <button id="button1">Go to store</button>
         <button id="button2">Go to cave</button>
         <button id="button3">Fight dragon</button>
       </div>
-      <div id="monsterStats"></div>
-      <div id="text"></div>
+
+      <!-- Similar to your #stats element, your #monsterStats element needs two span elements. 
+        Give them the class stat and give the first element the text Monster Name: and the second the text Health: . 
+        After the text in each, add a strong element with an empty nested span element. 
+        Give the first inner span element an id of monsterName and the second inner span element an id of monsterHealth.-->
+      <div id="monsterStats">
+        <span class="stat">Monster Name: <strong><span id="monsterName">0</span></strong></span>
+        <span class="stat">Health: <strong><span id="monsterHealth">0</span></strong></span>
+      </div>
+
+      <!--add the descriptive text in the div section-->
+      <div id="text">
+        Welcome to Dragon Repeller. You must defeat the dragon that is preventing people from leaving the town. 
+        You are in the town square. Where do you want to go? Use the buttons above.
+      </div>
     </div>
+    
+    <!-- Script tag is placed at the end of the body tag to enable 
+      the entire webpage to render completely before the script is executed, to avoid errors in function -->
+    <script src="./script.js"></script>
   </body>
 </html>
