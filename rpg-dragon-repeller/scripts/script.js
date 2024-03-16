@@ -86,6 +86,12 @@ const locations = [
     "button text": ["REPLAY?", "REPLAY?", "REPLAY?"], 
     "button functions": [restart, restart, restart], 
     text: "You defeat the dragon! YOU WIN THE GAME! &#x1F389;" 
+  },
+  {
+    name: "easter egg",
+    "button text": ["2", "8", "Go to town square?"],
+    "button functions": [pickTwo, pickEight, goTown],
+    text: "You find a secret game. Pick a number above. Ten numbers will be randomly chosen between 0 and 10. If the number you choose matches one of the random numbers, you win!"
   }
 ];
 
@@ -199,8 +205,12 @@ function goFight() {
 function attack() {
   text.innerText = "The " + monsters[fighting].name + " attacks.";
   text.innerText += " You attack it with your " + weapons[currentWeapon].name + ".";
-  health -= monsters[fighting].level;
-  monsterHealth -= weapons[currentWeapon].power + Math.floor(Math.random() * xp) + 1;
+  health -= getMonsterAttackValue(monsters[fighting].level);
+  if (isMonsterHit()) {
+    monsterHealth -= weapons[currentWeapon].power + Math.floor(Math.random() * xp) + 1;    
+  } else {
+    text.innerText += " You miss.";
+  }
   healthText.innerText = health;
   monsterHealthText.innerText = monsterHealth;
   if (health <= 0) {
@@ -212,6 +222,21 @@ function attack() {
       defeatMonster();
     }
   }
+  if (Math.random() <= .1 && inventory.length !== 1) {
+    text.innerText += " Your " + inventory.pop() + " breaks.";
+    currentWeapon--;
+  }
+}
+
+function getMonsterAttackValue(level) {
+  const hit = (level * 5) - (Math.floor(Math.random() * xp)); // This will set the monster's attack to five times their level minus a random number between 0 and the player's xp.
+  console.log(hit);
+  return hit > 0 ? hit : 0; // The ternary operator is a conditional operator and can be used as a one-line if-else statement. 
+                            // The syntax is: condition ? expressionIfTrue : expressionIfFalse.
+}
+
+function isMonsterHit() {
+  return Math.random() > .2 || health < 20;
 }
 
 // dodge function - executes on button click
@@ -221,7 +246,7 @@ function dodge() {
 
 // on defeating a monster
 function defeatMonster() {
-  gold += Math.floor(monsters[fighting].level * 6.7);
+  gold += Math.floor(monsters[fighting].level * 6.7); // Math floor function rounds down a decimal number to the highesat integer which is less than the decimal
   xp += monsters[fighting].level;
   goldText.innerText = gold;
   xpText.innerText = xp;
@@ -249,4 +274,44 @@ function restart() {
   healthText.innerText = health;
   xpText.innerText = xp;
   goTown();
+}
+
+// function for the easter egg minigame
+function easterEgg() {
+  update(locations[7]);
+}
+
+
+function pickTwo() {
+  pick(2);
+}
+
+function pickEight() {
+  pick(8);
+}
+
+function pick(guess) {
+  const numbers = [];
+  // while loop syntax
+  while (numbers.length < 10) {
+    numbers.push(Math.floor(Math.random() * 11));
+  }
+  text.innerText = "You picked " + guess + ". Here are the random numbers:\n";
+
+  // for loop syntax
+  for (let i = 0; i < 10; i++) {
+    text.innerText += numbers[i] + "\n";
+  }
+  if (numbers.includes(guess)) {
+    text.innerText += "Right! You win 20 gold!";
+    gold += 20;
+    goldText.innerText = gold;
+  } else {
+    text.innerText += "Wrong! You lose 10 health!";
+    health -= 10;
+    healthText.innerText = health;
+    if (health <= 0) {
+      lose();
+    }
+  }
 }
