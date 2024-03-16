@@ -20,7 +20,7 @@ const monsterStats = document.querySelector("#monsterStats");
 const monsterName = document.querySelector("#monsterName");
 const monsterHealthText = document.querySelector("#monsterHealth");
 
-// JS OBJECT ARRAY
+// JS OBJECT ARRAY - OBJECT DEFINED IN CURLY BRACKETS WITH PROPERTIES AS KEY VALUE PAIRS
 const weapons = [
   { name: 'stick', power: 5 },
   { name: 'dagger', power: 30 },
@@ -97,34 +97,37 @@ button3.onclick = fightDragon;
 // FUNCTION DECLARATION AND INITIALIZATION
 // update function used for updating the current state of the campaign
 function update(location) {
-  monsterStats.style.display = "none";
-  button1.innerText = location["button text"][0];
-  button2.innerText = location["button text"][1];
-  button3.innerText = location["button text"][2];
-  button1.onclick = location["button functions"][0];
-  button2.onclick = location["button functions"][1];
-  button3.onclick = location["button functions"][2];
-  text.innerHTML = location.text;
+  monsterStats.style.display = "none"; // <element-id>.style.<property> is used to select and edit the CSS properties of the element
+  // innerText and innerHTML both select the contents inside the first matched element in the HTML DOM, 
+  // but innerText selects only the formatted text part whereas innerHTML returns the HTML plaintext part entirely without formatiing
+  button1.innerText = location["button text"][0]; // selects the 1st element of the button text property of the called location object
+  button2.innerText = location["button text"][1]; // selects the 2nd element of the button text property of the called location object
+  button3.innerText = location["button text"][2]; // selects the 3rd element of the button text property of the called location object
+  button1.onclick = location["button functions"][0]; // selects the 1st element of the button functions property of the called location object
+  button2.onclick = location["button functions"][1]; // selects the 2nd element of the button functions property of the called location object
+  button3.onclick = location["button functions"][2]; // selects the 3rd element of the button functions property of the called location object
+  text.innerHTML = location.text; // updates the current status HTML with the text property of the called location object
 }
 
 // fucntions assigned for the three buttons on the game page
 function goTown() {
-  update(locations[0]);
+  update(locations[0]); // passes the first location as parameter to the update function
 }
 
 function goStore() {
-  update(locations[1]);
+  update(locations[1]); // passes the second location as parameter to the update function
 }
 
 function goCave() {
-  update(locations[2]);
+  update(locations[2]); // passes the third location as parameter to the update function
 }
 
 // shop functions of buying health
 function buyHealth() {
+  // IF-ELSE CONDITION
   if (gold >= 10) {
-    gold -= 10;
-    health += 10;
+    gold -= 10; // x -= y used as shorthand for x = x - y 
+    health += 10; // x += y used as shorthand for x = x + y
     goldText.innerText = gold;
     healthText.innerText = health;
   } else {
@@ -134,14 +137,15 @@ function buyHealth() {
 
 // shop functions of buying weapon
 function buyWeapon() {
+  // NESTED IF-ELSE CONDITION
   if (currentWeapon < weapons.length - 1) {
     if (gold >= 30) {
       gold -= 30;
-      currentWeapon++;
+      currentWeapon++; // ++ or -- used for incrementing or decrementing by 1  
       goldText.innerText = gold;
-      let newWeapon = weapons[currentWeapon].name;
-      text.innerText = "You now have a " + newWeapon + ".";
-      inventory.push(newWeapon);
+      let newWeapon = weapons[currentWeapon].name; // dot notation is also another way to get the value of a property of an object
+      text.innerText = "You now have a " + newWeapon + "."; // + operation used as a concatenation operator here 
+      inventory.push(newWeapon); // push function is used to add a new item to an array
       text.innerText += " In your inventory you have: " + inventory;
     } else {
       text.innerText = "You do not have enough gold to buy a weapon.";
@@ -158,7 +162,7 @@ function sellWeapon() {
   if (inventory.length > 1) {
     gold += 15;
     goldText.innerText = gold;
-    let currentWeapon = inventory.shift();
+    let currentWeapon = inventory.shift(); // shift function withdraws the first element from the array and returns it 
     text.innerText = "You sold a " + currentWeapon + ".";
     text.innerText += " In your inventory you have: " + inventory;
   } else {
@@ -166,7 +170,7 @@ function sellWeapon() {
   }
 }
 
-// functions for fighting different monsters 
+// functions for fighting different monsters - the fighting variable changes its value accordingly
 function fightSlime() {
   fighting = 0;
   goFight();
