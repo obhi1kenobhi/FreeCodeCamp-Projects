@@ -22,5 +22,16 @@ function isInvalidInput(str) {
 //function to add entry based on the time of day
 function addEntry() {
     const targetInputContainer = document.querySelector(`#${entryDropdown.value} .input-container`); // template literal format used here
-    
+    const entryNumber = targetInputContainer.querySelectorAll('input[type="text"]').length; //querySelectorAll returns all occurences of the passed parameter 
+    const HTMLString = `
+    <label for="${entryDropdown.value}-${entryNumber}-name">Entry ${entryNumber} Name</label>
+    <input type="text" id="${entryDropdown.value}-${entryNumber}-name" placeholder="Name" />
+    <label for="${entryDropdown.value}-${entryNumber}-calories">Entry ${entryNumber} Calories</label>
+    <input
+      type="number"
+      min="0"
+      id="${entryDropdown.value}-${entryNumber}-calories"
+      placeholder="Calories"
+    />`;                        // HTML string which takes entry of the calorie intake
+    targetInputContainer.innerHTML += HTMLString;
   }
