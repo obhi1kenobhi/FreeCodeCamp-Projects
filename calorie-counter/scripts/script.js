@@ -18,3 +18,9 @@ function isInvalidInput(str) {
     const regex = /\d+e\d+/i; // i flag is used for insensitive, so both upper and lowercase will be allowed; d flag is used as shorthand for all digits
     return str.match(regex); // match function matches first instance and returns it, or returns an array of all matches if regex is global
 }
+
+//function to add entry based on the time of day
+function addEntry() {
+    const targetInputContainer = document.querySelector(`#${entryDropdown.value} .input-container`); // template literal format used here
+    
+  }
