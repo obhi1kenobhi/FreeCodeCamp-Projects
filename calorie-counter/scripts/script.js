@@ -22,7 +22,7 @@ function isInvalidInput(str) {
 //function to add entry based on the time of day
 function addEntry() {
     const targetInputContainer = document.querySelector(`#${entryDropdown.value} .input-container`); // template literal format used here
-    const entryNumber = targetInputContainer.querySelectorAll('input[type="text"]').length; //querySelectorAll returns all occurences of the passed parameter 
+    const entryNumber = targetInputContainer.querySelectorAll('input[type="text"]').length + 1; //querySelectorAll returns all occurences of the passed parameter 
     const HTMLString = `
     <label for="${entryDropdown.value}-${entryNumber}-name">Entry ${entryNumber} Name</label>
     <input type="text" id="${entryDropdown.value}-${entryNumber}-name" placeholder="Name" />
@@ -33,5 +33,8 @@ function addEntry() {
       id="${entryDropdown.value}-${entryNumber}-calories"
       placeholder="Calories"
     />`;                        // HTML string which takes entry of the calorie intake
-    targetInputContainer.innerHTML += HTMLString;
+    targetInputContainer.insertAdjacentHTML('beforeend', HTMLString); //insertAdjacentHTML function uses two arguments - 1st is the position where to insert the HTML, 
+                                                                      // 2nd is to insert the HTML itself
   }
+
+  addEntryButton.addEventListener("click", addEntry); // Event Listener to listen to the click event of addEntryButton
