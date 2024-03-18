@@ -22,7 +22,7 @@ function isInvalidInput(str) {
 //function to add entry based on the time of day
 function addEntry() {
     const targetInputContainer = document.querySelector(`#${entryDropdown.value} .input-container`); // template literal format used here
-    const entryNumber = targetInputContainer.querySelectorAll('input[type="text"]').length + 1; //querySelectorAll returns all occurences of the passed parameter 
+    const entryNumber = targetInputContainer.querySelectorAll('input[type="text"]').length + 1; //querySelectorAll returns all occurences of the passed parameter as a NodeList. A NodeList is a list of elements like an array. It contains the elements that match the query selector.  
     const HTMLString = `
     <label for="${entryDropdown.value}-${entryNumber}-name">Entry ${entryNumber} Name</label>
     <input type="text" id="${entryDropdown.value}-${entryNumber}-name" placeholder="Name" />
@@ -37,4 +37,21 @@ function addEntry() {
                                                                       // 2nd is to insert the HTML itself
   }
 
-  addEntryButton.addEventListener("click", addEntry); // Event Listener to listen to the click event of addEntryButton
+// function to collect all calories from inputs, add them and return them 
+function getCaloriesFromInputs(list) {
+  let calories = 0;
+
+  for (const item of list) { // for..of loop to iterate through each item of the iterable 
+    const currVal = cleanInputString(item.value);  // cleans the string of symbols and spaces - previously defined
+    const invalidInputMatch = isInvalidInput(currVal); // checks whether the string is a valid one or not - previously defined
+
+    if (invalidInputMatch) {
+      alert(`Invalid Input: ${invalidInputMatch[0]}`);
+      isError = true;
+      return null;
+    } // if the input is invalid, set isError flag to true and return null
+    calories += Number(currVal);
+  }
+  return calories;
+}  
+addEntryButton.addEventListener("click", addEntry); // Event Listener to listen to the click event of addEntryButton
