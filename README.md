@@ -5,4 +5,7 @@ Projects and files can be referred to, for future reference
 
 ## List of projects:
 1. [Mini-RPG](https://obhi1kenobhi.github.io/FreeCodeCamp-Projects/rpg-dragon-repeller/)
+2. [Calorie Counter]()
+3. []()
+4. []()
 
