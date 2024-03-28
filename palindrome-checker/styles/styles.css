@@ -95,4 +95,8 @@ h4 {
     background: #E0C097;
     border-radius: 10px;
     width: 800px;
+    font-family: "Roboto Slab", serif;
+    font-optical-sizing: auto;
+    font-weight: 800;
+    font-style: bold;
 }
