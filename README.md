@@ -8,4 +8,6 @@ Projects and files can be referred to, for future reference
 2. [Calorie Counter](https://obhi1kenobhi.github.io/FreeCodeCamp-Projects/calorie-counter/)
 3. [Music Player](https://obhi1kenobhi.github.io/FreeCodeCamp-Projects/music-player/)
 4. [Date Formatter](https://obhi1kenobhi.github.io/FreeCodeCamp-Projects/date-formatter/)
+5. [Palindrome Checker](https://obhi1kenobhi.github.io/FreeCodeCamp-Projects/palindrome-checker/)
+6. [Football Cards](https://obhi1kenobhi.github.io/FreeCodeCamp-Projects/football-cards/)
 
