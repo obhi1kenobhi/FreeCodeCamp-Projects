@@ -1,0 +1,37 @@
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #FAEED1;
+}
+
+h1, label {
+    color: #607274;
+    margin: 20px;
+    padding: 10px;
+}
+
+.input-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#number {
+    background-color: #FAEED1;
+    color: #607274;
+    margin: 20px;
+    border-radius: 3px;
+
+
+}
+
+#output {
+    background-color: #FAEED1;
+    color: #B2A59B;
+    margin: 20px;
+    padding: 10px;
+
+}

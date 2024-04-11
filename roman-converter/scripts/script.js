@@ -9,22 +9,22 @@ const inplacer = () => {
 
 const checker = (number) => {
     if(Number.isNaN(number)) {
-        output_result.innerText = "Please enter a valid number";
+        output_result.textContent = "Please enter a valid number";
         return;
     }
     else if (number >= 4000) {
-        output_result.innerText = "Please enter a number less than or equal to 3999";
+        output_result.textContent = "Please enter a number less than or equal to 3999";
         return;
     }
     else if (number <= 0) {
-        output_result.innerText = "Please enter a number greater than or equal to 1";
+        output_result.textContent = "Please enter a number greater than or equal to 1";
         return;
     }
     else {
         
-        output_result.innerText = "";
+        output_result.textContent = "";
         converter(number);
-        output_result.innerText = roman_num;    
+        output_result.textContent = roman_num;    
     }
     
 }
