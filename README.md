@@ -1,7 +1,9 @@
 # FreeCodeCamp-Projects
 Folder for all web development projects in freecodecamp
-For practice purposes only
-Projects and files can be referred to, for future reference
+For practice purposes only.
+Projects and files can be referred to, for future reference.
+
+Projects labelled in UPPERCASE shall undergo various styling, functionality modifications in the near future. They will be consolidated into a differrent public repo for portfolio purposes too. 
 
 ## List of projects:
 1. [Mini-RPG](https://obhi1kenobhi.github.io/FreeCodeCamp-Projects/rpg-dragon-repeller/)
