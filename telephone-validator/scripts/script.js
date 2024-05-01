@@ -4,7 +4,7 @@ const clear_btn = document.getElementById("clear-btn");
 const output_div = document.getElementById("results-div");
 
 const num_checker = () => {
-    const regex = /^([1])?( |\-)?(\(\d{3}\)|(\d{3}))( |\-)?\d{3}( |\-)?\d{4}$/;
+    const regex = /^([1])?( |\-)?(\(\d{3}\)|(\d{3}))( |\-)?\d{3}( |\-)?\d{4}$/;   
     return regex.test(input_num.value)
 }
 
